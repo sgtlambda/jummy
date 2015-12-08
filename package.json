@@ -22,7 +22,10 @@
   ],
   "keywords": [
     "cli-app",
-    "cli"
+    "cli",
+    "hash",
+    "digest",
+    "glob"
   ],
   "dependencies": {
     "globby": "^4.0.0",
