@@ -1,0 +1,43 @@
+{
+  "name": "jummy",
+  "version": "0.0.1",
+  "description": "Get the combined hash of multiple files",
+  "license": "MIT",
+  "repository": "jmversteeg/jummy",
+  "author": {
+    "name": "JM Versteeg",
+    "email": "janmerijnversteeg@gmail.com",
+    "url": "github.com/jmversteeg"
+  },
+  "bin": "cli.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "ava"
+  },
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
+  "keywords": [
+    "cli-app",
+    "cli"
+  ],
+  "dependencies": {
+    "globby": "^4.0.0",
+    "lodash": "^3.10.1",
+    "meow": "^3.4.2",
+    "mock-fs": "^3.5.0",
+    "pinkie-promise": "^2.0.0",
+    "worq": "^1.2.0"
+  },
+  "devDependencies": {
+    "ava": "^0.3.0"
+  },
+  "xo": {
+    "ignores": [
+      "test.js"
+    ]
+  }
+}
