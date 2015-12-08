@@ -14,7 +14,6 @@ test(async function (t) {
     const first  = await jummy('path/to/fake/dir/*.*');
     const second = await jummy('path/**/*,*');
     t.not(first, second);
-    console.log(first);
     mock.restore();
     t.end();
 });
