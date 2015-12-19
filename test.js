@@ -15,5 +15,4 @@ test(async function (t) {
     const second = await jummy('path/**/*,*');
     t.not(first, second);
     mock.restore();
-    t.end();
 });
