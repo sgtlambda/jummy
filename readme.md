@@ -1,7 +1,11 @@
-# jummy [![Build Status](https://travis-ci.org/jmversteeg/jummy.svg?branch=master)](https://travis-ci.org/jmversteeg/jummy)
+# jummy
 
 > Get the combined hash of multiple files
 
+[![Build Status][travis-image]][travis-url]
+[![Code Quality][codeclimate-image]][codeclimate-url]
+[![Code Coverage][coveralls-image]][coveralls-url]
+[![NPM Version][npm-image]][npm-url]
 
 ## Install
 
@@ -59,3 +63,24 @@ $ jummy --help
 ## License
 
 MIT © [JM Versteeg](https://github.com/jmversteeg)
+
+[![dependency Status][david-image]][david-url]
+[![devDependency Status][david-dev-image]][david-dev-url]
+
+[travis-image]: https://img.shields.io/travis/jmversteeg/jummy.svg?style=flat-square
+[travis-url]: https://travis-ci.org/jmversteeg/jummy
+
+[codeclimate-image]: https://img.shields.io/codeclimate/github/jmversteeg/jummy.svg?style=flat-square
+[codeclimate-url]: https://codeclimate.com/github/jmversteeg/jummy
+
+[david-image]: https://img.shields.io/david/jmversteeg/jummy.svg?style=flat-square
+[david-url]: https://david-dm.org/jmversteeg/jummy
+
+[david-dev-image]: https://img.shields.io/david/dev/jmversteeg/jummy.svg?style=flat-square
+[david-dev-url]: https://david-dm.org/jmversteeg/jummy#info=devDependencies
+
+[coveralls-image]: https://img.shields.io/coveralls/jmversteeg/jummy.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/jmversteeg/jummy
+
+[npm-image]: https://img.shields.io/npm/v/jummy.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/jummy
