@@ -12,7 +12,7 @@ test(async function (t) {
         'some/other/path':  {/** another empty directory */}
     });
     const first  = await jummy('path/to/fake/dir/*.*');
-    const second = await jummy('path/**/*,*');
+    const second = await jummy('path/**/*.*');
     t.not(first, second);
     mock.restore();
 });
