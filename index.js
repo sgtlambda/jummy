@@ -1,10 +1,31 @@
 'use strict';
 
-var crypto  = require('crypto');
-var _       = require('lodash');
-var fs      = require('fs');
-var globby  = require('globby');
-var Promise = require('pinkie-promise');
+const _       = require('lodash');
+const fs      = require('fs');
+const pify    = require('pify');
+const globby  = require('globby');
+const crypto  = require('crypto');
+const Promise = require('pinkie-promise');
+
+/**
+ * Calculates the hash of the given file and updates the sum
+ * @param {string} file
+ * @param {Hash} hash
+ * @returns {Promise}
+ */
+const updateHash = function (file, hash) {
+    hash.update(file);
+    return pify(fs.lstat)(file).then(stat => {
+        if (!stat.isFile()) return Promise.resolve();
+        else {
+            var readStream = fs.createReadStream(file);
+            readStream.on('data', function (d) {
+                hash.update(d);
+            });
+            return new Promise(resolve => readStream.on('end', resolve));
+        }
+    });
+};
 
 /**
  * Returns the digest of all files matched by the given glob(s)
@@ -12,33 +33,12 @@ var Promise = require('pinkie-promise');
  * @param [algorithm="md5"] string
  */
 module.exports = function (globs, algorithm) {
-    return new Promise(function (resolve) {
+    return new Promise(resolve => {
         var md5sum = crypto.createHash(algorithm || "md5");
-        globby(globs).then(function (paths) {
-            var queue = Promise.resolve();
-            _.forEach(paths, function (path) {
-                queue = queue.then(function () {
-                    return new Promise(function (resolve) {
-                        md5sum.update(path);
-                        fs.lstat(path, function (err, stat) {
-                            if (stat.isFile()) {
-                                var readStream = fs.createReadStream(path);
-                                readStream.on('data', function (d) {
-                                    md5sum.update(d);
-                                });
-                                readStream.on('end', function () {
-                                    resolve();
-                                });
-                            } else {
-                                resolve();
-                            }
-                        });
-                    });
-                });
-            });
-            queue.then(function () {
-                resolve(md5sum.digest('hex'));
-            });
+        globby(globs).then(paths => {
+            return _.reduce(paths, (queue, path) => queue.then(() =>
+                updateHash(path, md5sum)
+            ), Promise.resolve()).then(() => resolve(md5sum.digest('hex')));
         });
     });
 };
