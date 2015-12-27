@@ -26,7 +26,7 @@ jummy(['some/path/*.*', '!some/path/*.txt']).then(console.log);
 
 ## API
 
-### jummy(globs, [algorithm])
+### jummy(globs, [options])
 
 #### globs
 
@@ -34,7 +34,9 @@ Type: `string|string[]`
 
 May contain paths to directories or globs
 
-#### algorithm
+#### options
+
+##### algorithm
 
 Type: `string`  
 Default: `md5`

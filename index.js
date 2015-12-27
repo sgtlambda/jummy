@@ -31,7 +31,7 @@ const updateHash = function (path, hash) {
 /**
  * Returns the digest of all files matched by the given glob(s)
  * @param {string|string[]} globs
- * @param {object} options
+ * @param {object} [options]
  */
 module.exports = function (globs, options) {
     options = _.defaults({}, options, {
