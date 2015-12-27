@@ -41,4 +41,13 @@ describe('jummy', () => {
             return hashes[0].should.be.equal(hashes[1]);
         });
     });
+
+    it('should return the same for two empty directories', () => {
+        return Promise.all([
+            jummy('path/to/fake/dir/empty-dir'),
+            jummy('path/to/fake/dir/some/other/path')
+        ]).then(hashes => {
+            return hashes[0].should.be.equal(hashes[1]);
+        });
+    })
 });
