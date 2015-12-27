@@ -1,6 +1,6 @@
 {
   "name": "jummy",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Get the combined hash of multiple files",
   "license": "MIT",
   "repository": "jmversteeg/jummy",
