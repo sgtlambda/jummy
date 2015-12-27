@@ -32,6 +32,8 @@ jummy(['some/path/*.*', '!some/path/*.txt']).then(console.log);
 
 Type: `string|string[]`
 
+May contain paths to directories or globs
+
 #### algorithm
 
 Type: `string`  
@@ -55,7 +57,7 @@ $ jummy --help
   Examples
     $ jummy
     0b63e050cfd788c70b0d3b3fc630b535
-    $ jummy 'some/path/*.*' '!some/path/*.jpg' --algorithm sha256
+    $ jummy 'some/path' '!some/path/*.jpg' --algorithm sha256
     b707377cece8097eae0ecb79ce69404786d2fb3d893f8dd4ff38d1dab9ee156f
 ```
 
