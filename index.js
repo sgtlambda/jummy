@@ -1,12 +1,12 @@
 'use strict';
 
-const _              = require('lodash');
-const fs             = require('fs');
-const pify           = require('pify');
-const globby         = require('globby');
-const crypto         = require('crypto');
-const transformGlobs = require('transform-hybrid-glob-array');
-const Promise        = require('pinkie-promise');
+const _       = require('lodash');
+const fs      = require('fs');
+const pify    = require('pify');
+const globby  = require('globby');
+const crypto  = require('crypto');
+const dirGlob = require('dir-glob');
+const Promise = require('pinkie-promise');
 
 /**
  * Calculates the hash of the given file and updates the sum
@@ -39,7 +39,7 @@ module.exports = function (globs, options) {
     });
     return new Promise(resolve => {
         var md5sum = crypto.createHash(options.algorithm);
-        transformGlobs(globs)
+        dirGlob(_.isArray(globs) ? globs : [globs])
             .then(globs => globby(globs))
             .then(paths => {
                 return _.reduce(paths, (queue, path) => queue.then(() =>
