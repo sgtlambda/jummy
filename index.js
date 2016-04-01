@@ -20,9 +20,7 @@ const updateHash = function (path, hash) {
         else {
             hash.update(path);
             var readStream = fs.createReadStream(path);
-            readStream.on('data', function (d) {
-                hash.update(d);
-            });
+            readStream.on('data', d => hash.update(d));
             return new Promise(resolve => readStream.on('end', resolve));
         }
     });
@@ -41,10 +39,8 @@ module.exports = function (globs, options) {
         var md5sum = crypto.createHash(options.algorithm);
         dirGlob(_.isArray(globs) ? globs : [globs])
             .then(globs => globby(globs))
-            .then(paths => {
-                return _.reduce(paths, (queue, path) => queue.then(() =>
-                    updateHash(path, md5sum)
-                ), Promise.resolve()).then(() => resolve(md5sum.digest('hex')));
-            });
+            .then(paths => _.reduce(paths, (queue, path) => queue.then(() =>
+                updateHash(path, md5sum)
+            ), Promise.resolve()).then(() => resolve(md5sum.digest('hex'))));
     });
 };
