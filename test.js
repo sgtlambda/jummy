@@ -3,25 +3,14 @@
 const chai = require('chai');
 chai.should();
 
+const path    = require('path');
 const jummy   = require('./');
-const mock    = require('mock-fs');
 const Promise = require('pinkie-promise');
 
 describe('jummy', () => {
 
     before(() => {
-        mock({
-            'path/to/fake/dir': {
-                'some-file.txt': 'file content here',
-                'empty-dir':     {/** empty directory */}
-            },
-            'path/to/some.png': new Buffer([8, 6, 7, 5, 3, 0, 9]),
-            'some/other/path':  {/** another empty directory */}
-        });
-    });
-
-    after(() => {
-        mock.restore();
+        process.chdir(path.join(__dirname, 'dummy'));
     });
 
     it('should generate hashes for the provided globs', () => {
@@ -41,7 +30,7 @@ describe('jummy', () => {
             return hashes[0].should.be.equal(hashes[1]);
         });
     });
-
+    
     it('should return the same for two empty directories', () => {
         return Promise.all([
             jummy('path/to/fake/dir/empty-dir'),

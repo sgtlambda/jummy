@@ -29,15 +29,16 @@
   ],
   "dependencies": {
     "dir-glob": "^1.1.0",
-    "globby": "^4.0.0",
-    "lodash": "^4.7.0",
+    "globby": "^5.0.0",
+    "lodash": "^4.13.1",
+    "make-globs-absolute": "1.0.0",
     "meow": "^3.7.0",
-    "mock-fs": "^3.8.0",
+    "mock-fs": "^3.9.0",
     "pify": "^2.3.0",
-    "pinkie-promise": "^2.0.0"
+    "pinkie-promise": "^2.0.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^2.4.5"
+    "mocha": "^2.5.3"
   }
 }
